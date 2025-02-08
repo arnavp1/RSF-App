@@ -9,24 +9,34 @@ import SwiftUI
 
 struct RSFInfoView: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("RSF Information")
-                    .font(.largeTitle)
-                    .bold()
-
-                Group {
-                    Text("Hours of Operation:")
-                        .font(.headline)
-                    Text("Mon-Fri: 6 AM - 10 PM\nSat-Sun: 8 AM - 8 PM")
-
-                    Text("⚽ Amenities:")
-                        .font(.headline)
-                    Text("• Weight Rooms\n• Basketball Courts\n• Swimming Pool\n• Group Fitness Classes")
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    
+                    // MARK: RSF Information Title
+                    sectionContainer {
+                        Text("RSF Information")
+                            .font(.largeTitle)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
                 }
-                .padding(.horizontal)
+                .padding()
             }
-            .padding()
+            .background(Color(.systemGray6))
+            .navigationTitle("RSF Information")
         }
+    }
+    
+    // MARK: - Section Container Modifier
+    @ViewBuilder
+    private func sectionContainer<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            content()
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(8)
     }
 }

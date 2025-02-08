@@ -1,5 +1,5 @@
 //
-//  WorkoutPlannerView.swift
+//  WorkoutAndAttendanceView.swift
 //  RSF
 //
 //  Created by Arnav Podichetty on 2/5/25.
@@ -32,18 +32,18 @@ struct WorkoutAndAttendanceView: View {
                         DatePicker("Date", selection: $attendanceDate, displayedComponents: .date)
                             .datePickerStyle(.compact)
                             .padding(10)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(radius: 1)
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                         TextField("Duration (minutes)", text: $workoutDuration)
                             .keyboardType(.numberPad)
                             .padding(10)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(radius: 1)
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
                         
                         HStack {
+                            Spacer()
+                            
                             Picker("Select Workout (Optional)", selection: $selectedWorkout) {
                                 Text("No Workout").tag(Optional<Workout>(nil))
                                 ForEach(workouts) { workout in
@@ -52,10 +52,10 @@ struct WorkoutAndAttendanceView: View {
                             }
                             .pickerStyle(.menu)
                             .padding(10)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(radius: 1)
-
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                            .layoutPriority(1)
+                            
                             Button("Check In") {
                                 guard let duration = Int(workoutDuration) else { return }
                                 let newAttendance = Attendance(date: attendanceDate, workout: selectedWorkout, duration: duration)
@@ -65,7 +65,10 @@ struct WorkoutAndAttendanceView: View {
                                 selectedWorkout = nil
                             }
                             .buttonStyle(.borderedProminent)
-                            .padding(.leading, 5)
+                            .padding(.horizontal, 10)
+                            .fixedSize()
+                            
+                            Spacer()
                         }
                     }
                     
@@ -95,7 +98,7 @@ struct WorkoutAndAttendanceView: View {
                                             .foregroundColor(.red)
                                             .padding(8)
                                     }
-                                    .buttonStyle(.plain) // Removes default button styling
+                                    .buttonStyle(.plain)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -107,8 +110,6 @@ struct WorkoutAndAttendanceView: View {
                         }
                     }
 
-
-                    
                     // MARK: Workout Management
                     sectionContainer {
                         DisclosureGroup(isExpanded: $showWorkouts) {
@@ -123,7 +124,7 @@ struct WorkoutAndAttendanceView: View {
                 }
                 .padding()
             }
-            .background(Color(.systemGray6))
+            .background(Color(uiColor: .systemBackground)) // Apply adaptive background
             .navigationTitle("Workout & Attendance")
         }
     }
@@ -131,13 +132,11 @@ struct WorkoutAndAttendanceView: View {
     // MARK: - Section Container Modifier
     @ViewBuilder
     private func sectionContainer<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 15) {
             content()
         }
         .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 3)
+        .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground))) // System background color
     }
 }
 
@@ -152,32 +151,41 @@ struct WorkoutManagerView: View {
     @State private var reps = ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 15) {
             TextField("Workout Name", text: $workoutName)
                 .padding(10)
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 1)
-            
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+
             TextField("Workout Description", text: $workoutDescription)
                 .padding(10)
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 1)
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
-            HStack {
+            HStack(spacing: 10) {
                 TextField("Exercise", text: $exerciseName)
+                    .padding(10)
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+
                 TextField("Sets", text: $sets)
                     .keyboardType(.numberPad)
+                    .padding(10)
+                    .frame(width: 80)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+
                 TextField("Reps", text: $reps)
                     .keyboardType(.numberPad)
+                    .padding(10)
+                    .frame(width: 80)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
             }
-            .padding(10)
-            .background(Color.white)
-            .cornerRadius(8)
-            .shadow(radius: 1)
 
-            // ✅ Centered HStack for Add Exercise & Save Workout Buttons
             HStack(spacing: 15) {
                 Button("Add Exercise") {
                     if let setsInt = Int(sets), let repsInt = Int(reps), !exerciseName.isEmpty {
@@ -199,41 +207,43 @@ struct WorkoutManagerView: View {
                     exercises = []
                 }
                 .buttonStyle(.borderedProminent)
+                .disabled(workoutName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) // Disable if empty
             }
-            .frame(maxWidth: .infinity, alignment: .center) // Center alignment for buttons
-
-            // List of Saved Workouts with Delete Button
-            ForEach(workouts) { workout in
-                HStack {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(workout.name)
-                            .font(.headline)
-                        Text(workout.description)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        
-                        ForEach(workout.exercises) { exercise in
-                            Text("- \(exercise.name): \(exercise.sets) sets x \(exercise.reps) reps")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    // 🗑️ Trash Icon Button (Aligned to the Right)
-                    Button(action: {
-                        if let index = workouts.firstIndex(where: { $0.id == workout.id }) {
-                            workouts.remove(at: index)
-                            UserDefaultsManager.saveWorkouts(workouts)
-                        }
-                    }) {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                            .padding(8)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .padding(.vertical, 5)
-            }
+            .frame(maxWidth: .infinity, alignment: .center)
         }
+        
+        // List of Saved Workouts with Delete Button
+        ForEach(workouts) { workout in
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(workout.name)
+                        .font(.headline)
+                    Text(workout.description)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    
+                    ForEach(workout.exercises) { exercise in
+                        Text("- \(exercise.name): \(exercise.sets) sets x \(exercise.reps) reps")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                // 🗑️ Trash Icon Button (Aligned to the Right)
+                Button(action: {
+                    if let index = workouts.firstIndex(where: { $0.id == workout.id }) {
+                        workouts.remove(at: index)
+                        UserDefaultsManager.saveWorkouts(workouts)
+                    }
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                        .padding(8)
+                }
+                .buttonStyle(.plain)
+            }
+            .padding(.vertical, 5)
+        }
+        .padding(.horizontal, 15)
     }
 }

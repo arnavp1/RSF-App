@@ -13,7 +13,7 @@ struct WebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        webView.scrollView.isScrollEnabled = false  // Disable scrolling
+        webView.scrollView.isScrollEnabled = false
         webView.load(URLRequest(url: url))
         return webView
     }

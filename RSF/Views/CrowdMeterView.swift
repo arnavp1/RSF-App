@@ -20,7 +20,7 @@ struct CrowdMeterView: View {
                         .padding(.top)
 
                     WebView(url: URL(string: "https://safe.density.io/#/displays/dsp_956223069054042646?token=shr_o69HxjQ0BYrY2FPD9HxdirhJYcFDCeRolEd744Uj88e")!)
-                        .frame(height: 400) // Adjust height as needed
+                        .frame(height: 400)
                         .cornerRadius(10)
                         .padding()
                 }
@@ -36,7 +36,7 @@ struct CrowdMeterView: View {
                         .padding(.top)
 
                     WebView(url: URL(string: "https://safe.density.io/#/displays/dsp_1160333760881754703?token=shr_CPp9qbE0jN351cCEQmtDr4R90r3SIjZASSY8GU5O3gR")!)
-                        .frame(height: 400) // Adjust height as needed
+                        .frame(height: 400)
                         .cornerRadius(10)
                         .padding()
                 }
