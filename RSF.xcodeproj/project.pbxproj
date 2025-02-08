@@ -35,16 +35,6 @@
 			path = RSF;
 			sourceTree = "<group>";
 		};
-		4717E8142D544ED800AB5149 /* RSFTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RSFTests;
-			sourceTree = "<group>";
-		};
-		4717E81E2D544ED900AB5149 /* RSFUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RSFUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				4717E8022D544ED600AB5149 /* RSF */,
-				4717E8142D544ED800AB5149 /* RSFTests */,
-				4717E81E2D544ED900AB5149 /* RSFUITests */,
 				4717E8012D544ED600AB5149 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				4717E8132D544ED800AB5149 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				4717E8142D544ED800AB5149 /* RSFTests */,
-			);
 			name = RSFTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				4717E81D2D544ED900AB5149 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4717E81E2D544ED900AB5149 /* RSFUITests */,
 			);
 			name = RSFUITests;
 			packageProductDependencies = (
@@ -195,6 +177,8 @@
 			);
 			mainGroup = 4717E7F72D544ED600AB5149;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4717E8012D544ED600AB5149 /* Products */;
 			projectDirPath = "";
