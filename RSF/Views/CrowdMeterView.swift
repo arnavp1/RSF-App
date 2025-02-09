@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct CrowdMeterView: View {
+    @State private var showSafari = false
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -23,6 +26,20 @@ struct CrowdMeterView: View {
                         .frame(height: 400)
                         .cornerRadius(10)
                         .padding()
+                    
+                    // Join Virtual Line Button
+                    Button(action: {
+                        showSafari = true
+                    }) {
+                        Text("Join Virtual Line")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .padding(.horizontal, 20)
+                    }
                 }
 
                 Divider().padding(.horizontal)
@@ -42,9 +59,25 @@ struct CrowdMeterView: View {
                 }
             }
             .padding()
+            .sheet(isPresented: $showSafari) {
+                SafariView(url: URL(string: "https://berkeley-rec-well.app.qless.com/kiosk/ee21e564-039f-488a-a68d-6d5039e62745")!)
+            }
         }
     }
 }
+
+// MARK: - SafariView (Wrapper for SFSafariViewController)
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {}
+}
+
+
 
 
 
