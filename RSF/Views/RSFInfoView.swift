@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct RSFInfoView: View {
-    @State private var showRSFHours = false  // Track if RSF Hours section is expanded
-    @State private var showVirtualLineFAQ = false  // Track if Virtual Line FAQ section is expanded
-    @State private var showFeedbackForm = false  // Track if feedback form should open
+    @State private var showRSFHours = false
+    @State private var showVirtualLineFAQ = false
+    @State private var showFeedbackForm = false
 
     var body: some View {
         NavigationView {

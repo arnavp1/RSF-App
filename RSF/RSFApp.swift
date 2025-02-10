@@ -24,7 +24,7 @@ struct RSFApp: App {
                         Label("Settings", systemImage: "gearshape.fill")
                     }
             }
-            .preferredColorScheme(themeToColorScheme(selectedTheme)) // Apply 
+            .preferredColorScheme(themeToColorScheme(selectedTheme)) 
         }
     }
 
