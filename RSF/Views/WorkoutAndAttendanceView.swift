@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WorkoutAndAttendanceView: View {
+    @AppStorage("selectedAccentColor") private var selectedAccentColor: AccentColorOption = .blue
     @State private var attendanceDate = Date()
     @State private var workoutDuration = ""
     @State private var selectedWorkout: Workout? = nil
@@ -26,14 +27,14 @@ struct WorkoutAndAttendanceView: View {
                         DatePicker("Date", selection: $attendanceDate, displayedComponents: .date)
                             .datePickerStyle(.compact)
                             .padding(10)
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                         TextField("Duration (minutes)", text: $workoutDuration)
                             .keyboardType(.numberPad)
                             .padding(10)
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                         HStack {
                             Spacer()
@@ -46,8 +47,8 @@ struct WorkoutAndAttendanceView: View {
                             }
                             .pickerStyle(.menu)
                             .padding(10)
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                             Button("Check In") {
                                 guard let duration = Int(workoutDuration) else { return }
@@ -108,7 +109,7 @@ struct WorkoutAndAttendanceView: View {
                         } label: {
                             Text("📊 Attendance History")
                                 .font(.headline)
-                                .foregroundColor(.blue)
+                                .foregroundColor(selectedAccentColor.color)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
@@ -120,7 +121,7 @@ struct WorkoutAndAttendanceView: View {
                         } label: {
                             Text("🏋️ Manage Workouts")
                                 .font(.headline)
-                                .foregroundColor(.blue)
+                                .foregroundColor(selectedAccentColor.color)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
@@ -142,7 +143,7 @@ struct WorkoutAndAttendanceView: View {
             content()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
     }
 }
 
@@ -235,8 +236,8 @@ struct WorkoutManagerView: View {
             .pickerStyle(.menu)
             .padding(10)
             .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
             .onChange(of: selectedWorkout) { newValue, _ in
                 if let workout = newValue {
                     workoutName = workout.name
@@ -252,36 +253,36 @@ struct WorkoutManagerView: View {
             TextField("Workout Name", text: $workoutName)
                 .padding(10)
                 .frame(maxWidth: .infinity)
-                .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
             TextField("Workout Description", text: $workoutDescription)
                 .padding(10)
                 .frame(maxWidth: .infinity)
-                .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
             // MARK: Add Exercise
             HStack(spacing: 10) {
                 TextField("Exercise", text: $exerciseName)
                     .padding(10)
                     .frame(maxWidth: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                 TextField("Sets", text: $sets)
                     .keyboardType(.numberPad)
                     .padding(10)
                     .frame(width: 60)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                 TextField("Reps", text: $reps)
                     .keyboardType(.numberPad)
                     .padding(10)
                     .frame(width: 60)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
 
                 Button(action: {
                     if let setsInt = Int(sets), let repsInt = Int(reps), !exerciseName.isEmpty {

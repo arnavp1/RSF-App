@@ -1,9 +1,15 @@
 import SwiftUI
+import MapKit
 
 struct RSFInfoView: View {
+    @AppStorage("selectedAccentColor") private var selectedAccentColor: AccentColorOption = .blue
     @State private var showRSFHours = false
     @State private var showVirtualLineFAQ = false
     @State private var showFeedbackForm = false
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.8696354, longitude: -122.2652308),
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+    )
 
     var body: some View {
         NavigationView {
@@ -64,7 +70,7 @@ struct RSFInfoView: View {
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
                                         .padding()
-                                        .background(Color.blue)
+                                        .background(selectedAccentColor.color)
                                         .cornerRadius(10)
                                         .padding(.top, 10)
                                 }
@@ -73,6 +79,58 @@ struct RSFInfoView: View {
                         } label: {
                             Text("💡 Virtual Weight Room Line FAQs")
                                 .font(.headline)
+                        }
+                    }
+                    
+                    // MARK: RSF Facility Information
+                    sectionContainer {
+                        NavigationLink(destination: RSFDetailsView()) {
+                            Text("ℹ️ RSF Facility Information")
+                                .font(.headline)
+                                .foregroundColor(selectedAccentColor.color)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    
+                    // MARK: RSF Policies
+                    sectionContainer {
+                        NavigationLink(destination: RSFPoliciesView()) {
+                            Text("⚖️ RSF Policies")
+                                .font(.headline)
+                                .foregroundColor(selectedAccentColor.color)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    
+                    // MARK: RSF Location & Interactive Map
+                    sectionContainer {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("📍 RSF Location")
+                                .font(.headline)
+
+                            Text("2301 Bancroft Way\nBerkeley, CA 94720")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+
+                            Map(position: .constant(.region(region)), interactionModes: [.zoom, .pan])
+                                .frame(height: 200)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                            
+                            Button(action: openInAppleMaps) {
+                                HStack {
+                                    Image(systemName: "map.fill")
+                                        .foregroundColor(.white)
+                                    Text("Get Directions")
+                                        .font(.body)
+                                        .bold()
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(selectedAccentColor.color)
+                                .cornerRadius(10)
+                            }
                         }
                     }
                 }
@@ -93,8 +151,8 @@ struct RSFInfoView: View {
             content()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .secondarySystemBackground)))
-        .cornerRadius(8)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+        .cornerRadius(10)
     }
 }
 
@@ -133,4 +191,12 @@ struct FAQRow: View {
         }
         .padding(.vertical, 5)
     }
+}
+
+// Function to Open Apple Maps with Directions
+func openInAppleMaps() {
+    let coordinate = CLLocationCoordinate2D(latitude: 37.8696354, longitude: -122.2652308)
+    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+    mapItem.name = "Recreational Sports Facility (RSF)"
+    mapItem.openInMaps()
 }

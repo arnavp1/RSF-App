@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct RSFApp: App {
     @AppStorage("selectedTheme") private var selectedTheme: ThemeOption = .system
+    @AppStorage("selectedAccentColor") private var selectedAccentColor: AccentColorOption = .blue
 
     var body: some Scene {
         WindowGroup {
@@ -10,21 +11,26 @@ struct RSFApp: App {
                 CrowdMeterView()
                     .tabItem {
                         Label("Crowd", systemImage: "person.3.fill")
+                            .foregroundColor(selectedAccentColor.color)
                     }
                 WorkoutAndAttendanceView()
                     .tabItem {
                         Label("Workouts & Tracker", systemImage: "dumbbell.fill")
+                            .foregroundColor(selectedAccentColor.color)
                     }
                 RSFInfoView()
                     .tabItem {
                         Label("RSF Info", systemImage: "info.circle.fill")
+                            .foregroundColor(selectedAccentColor.color)
                     }
                 SettingsView()
                     .tabItem {
                         Label("Settings", systemImage: "gearshape.fill")
+                            .foregroundColor(selectedAccentColor.color)
                     }
             }
-            .preferredColorScheme(themeToColorScheme(selectedTheme)) 
+            .preferredColorScheme(themeToColorScheme(selectedTheme))
+            .tint(selectedAccentColor.color)
         }
     }
 

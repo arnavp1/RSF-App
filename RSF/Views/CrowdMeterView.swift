@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CrowdMeterView: View {
+    @AppStorage("selectedAccentColor") private var selectedAccentColor: AccentColorOption = .blue
     @State private var showSafari = false
 
     var body: some View {
@@ -28,7 +29,7 @@ struct CrowdMeterView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(selectedAccentColor.color)
                             .cornerRadius(10)
                             .padding(.horizontal, 20)
                     }
@@ -57,47 +58,3 @@ struct CrowdMeterView: View {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-/* old
- import SwiftUI
-
- struct CrowdMeterView: View {
-     @StateObject private var viewModel = CrowdViewModel()
-     
-     var body: some View {
-         NavigationView {
-             List(viewModel.crowdData) { data in
-                 VStack(alignment: .leading, spacing: 5) {
-                     Text(data.location)
-                         .font(.headline)
-                     ProgressView(value: Double(data.occupancyPercentage), total: 100)
-                         .progressViewStyle(LinearProgressViewStyle(tint: data.occupancyPercentage > 70 ? .red : .green))
-                     Text("Occupancy: \(data.occupancyPercentage)%")
-                         .font(.subheadline)
-                     Text("Last Updated: \(formattedDate(data.lastUpdated))")
-                         .font(.caption)
-                         .foregroundColor(.gray)
-                 }
-                 .padding(.vertical, 8)
-             }
-             .navigationTitle("RSF Crowd Meter")
-         }
-     }
-     
-     private func formattedDate(_ date: Date) -> String {
-         let formatter = DateFormatter()
-         formatter.dateStyle = .short
-         formatter.timeStyle = .short
-         return formatter.string(from: date)
-     }
- }
-*/
