@@ -1,12 +1,4 @@
-//
-//  CrowdMeterView.swift
-//  RSF
-//
-//  Created by Arnav Podichetty on 2/5/25.
-//
-
 import SwiftUI
-import SafariServices
 
 struct CrowdMeterView: View {
     @State private var showSafari = false
@@ -66,16 +58,6 @@ struct CrowdMeterView: View {
     }
 }
 
-// MARK: - SafariView (Wrapper for SFSafariViewController)
-struct SafariView: UIViewControllerRepresentable {
-    let url: URL
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        return SFSafariViewController(url: url)
-    }
-
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {}
-}
 
 
 

@@ -1,10 +1,3 @@
-//
-//  RSFApp.swift
-//  RSF
-//
-//  Created by Arnav Podichetty on 2/5/25.
-//
-
 import SwiftUI
 
 @main
@@ -31,7 +24,7 @@ struct RSFApp: App {
                         Label("Settings", systemImage: "gearshape.fill")
                     }
             }
-            .preferredColorScheme(themeToColorScheme(selectedTheme)) // Apply theme
+            .preferredColorScheme(themeToColorScheme(selectedTheme)) // Apply 
         }
     }
 

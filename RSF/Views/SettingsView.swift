@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  RSF
-//
-//  Created by Arnav Podichetty on 2/7/25.
-//
-
 import SwiftUI
 
 enum ThemeOption: String, CaseIterable, Identifiable {
