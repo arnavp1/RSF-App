@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct WorkoutAndAttendanceView: View {
+struct TrackerView: View {
     @AppStorage("selectedAccentColor") private var selectedAccentColor: AccentColorOption = .blue
     @State private var attendanceDate = Date()
     @State private var workoutDuration = ""
@@ -128,8 +128,11 @@ struct WorkoutAndAttendanceView: View {
                 }
                 .padding()
             }
-            .background(Color(uiColor: .systemBackground))
-            .navigationTitle("Workout & Attendance")
+            .background(Color(uiColor: .systemGroupedBackground))
+            .navigationTitle("Workouts & Attendance")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color(uiColor: .systemGroupedBackground), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .sheet(item: $editingAttendance) { attendance in
                 EditAttendanceView(attendance: attendance, attendanceList: $attendanceList)
             }
@@ -143,7 +146,7 @@ struct WorkoutAndAttendanceView: View {
             content()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemBackground)))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .secondarySystemGroupedBackground)))
     }
 }
 

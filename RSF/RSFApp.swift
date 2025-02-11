@@ -13,9 +13,9 @@ struct RSFApp: App {
                         Label("Crowd", systemImage: "person.3.fill")
                             .foregroundColor(selectedAccentColor.color)
                     }
-                WorkoutAndAttendanceView()
+                TrackerView()
                     .tabItem {
-                        Label("Workouts & Tracker", systemImage: "dumbbell.fill")
+                        Label("Tracker", systemImage: "dumbbell.fill")
                             .foregroundColor(selectedAccentColor.color)
                     }
                 RSFInfoView()

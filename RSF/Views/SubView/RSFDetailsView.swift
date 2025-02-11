@@ -10,7 +10,16 @@ struct RSFDetailsView: View {
     @State private var showWeightRoom = false
     @State private var showSportsAreas = false
     @State private var showLockerRooms = false
-
+    @State private var showSafari = false
+    @State private var safariURL: URL?
+    
+    func showSafariView(url: String) {
+        if let url = URL(string: url) {
+            safariURL = url
+            showSafari = true
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -46,8 +55,64 @@ struct RSFDetailsView: View {
                 // MARK: Customer Service & Passport
                 sectionContainer {
                     DisclosureGroup("💼 Customer Service & Passport Facility", isExpanded: $showCustomerService) {
-                        Text("The RSF Customer Service Center handles memberships, passport services, and program information. Located at the entrance of RSF.")
-                            .padding(.top, 5)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("The RSF Customer Service Center handles memberships, passport services, and program information. Located at the entrance of RSF.")
+                                .padding(.bottom, 5)
+
+                            Divider().padding(.vertical, 5)
+
+                            Text("⏰ **Hours of Operation**")
+                                .font(.headline)
+                            Text("""
+                            • Monday - Friday: 9:00 AM - 6:00 PM (PST)
+                            • Saturday: 9:30 AM - 5:00 PM (Appointment Only)
+                            """)
+                            .padding(.bottom, 5)
+
+                            Text("At the start of the semester, appointments may be limited. For membership inquiries or program questions, email us at **recwell@berkeley.edu** for assistance.")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+
+                            Divider().padding(.vertical, 5)
+
+                            // Make an Appointment Button
+                            Button(action: {
+                                showSafariView(url: "https://kiosk.na1.qless.com/kiosk/app/home/10000000006")
+                            }) {
+                                HStack {
+                                    Image(systemName: "calendar")
+                                    Text("Make an Appointment")
+                                        .font(.body)
+                                        .bold()
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(selectedAccentColor.color)
+                                .cornerRadius(10)
+                            }
+                            .padding(.bottom, 5)
+
+                            Divider().padding(.vertical, 5)
+
+                            // Contact Us Button
+                            Button(action: {
+                                showSafariView(url: "https://berkeleysa.tfaforms.net/106")
+                            }) {
+                                HStack {
+                                    Image(systemName: "envelope")
+                                    Text("Contact Us")
+                                        .font(.body)
+                                        .bold()
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(selectedAccentColor.color)
+                                .cornerRadius(10)
+                            }
+                        }
+                        .padding(.top, 5)
                     }
                 }
 
@@ -91,6 +156,11 @@ struct RSFDetailsView: View {
             .padding()
         }
         .navigationTitle("RSF Details")
+        .sheet(isPresented: $showSafari) {
+            if let url = safariURL {
+                SafariView(url: url)
+            }
+        }
     }
 
     // MARK: - Section Container Modifier

@@ -9,7 +9,7 @@ struct RSFPoliciesView: View {
     @State private var showCourtPolicies = false
     @State private var showWeightRoomRules = false
     @State private var showLockerRoomPolicies = false
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
