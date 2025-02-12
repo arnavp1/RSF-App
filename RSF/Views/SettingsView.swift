@@ -70,6 +70,7 @@ struct SettingsView: View {
                             HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
                         }
 */
+                    
                     // MARK: - Appearance Selection
                     HStack {
                         Text("Appearance")
@@ -86,13 +87,12 @@ struct SettingsView: View {
                                             .font(.caption)
                                             .foregroundColor(selectedTheme == theme ? .white : .primary)
                                     )
-/*                                    .onTapGesture {
+                                    .onTapGesture {
                                         withAnimation {
                                             selectedTheme = theme
-                                            HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
+                                            //HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
                                         }
                                     }
-*/
                             }
                         }
                     }
