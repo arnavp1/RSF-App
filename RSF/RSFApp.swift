@@ -1,3 +1,9 @@
+/* Thing that still need to be added:
+ - Haptics
+ - Push Notifications
+ - Widgets
+ */
+
 import SwiftUI
 
 @main

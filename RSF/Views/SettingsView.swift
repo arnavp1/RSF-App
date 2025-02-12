@@ -59,6 +59,7 @@ struct SettingsView: View {
                     
                     // MARK: - Notifications Toggle
                     Toggle("Notifications", isOn: $notificationsEnabled)
+/*
                         .onChange(of: notificationsEnabled) { newValue, _ in
                             HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
                         }
@@ -66,9 +67,9 @@ struct SettingsView: View {
                     // MARK: - Haptic Feedback Toggle
                     Toggle("Haptic Feedback", isOn: $hapticFeedbackEnabled)
                         .onChange(of: hapticFeedbackEnabled) { newValue, _ in
-                            HapticManager.shared.triggerHapticFeedback(enabled: newValue)
+                            HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
                         }
-                    
+*/
                     // MARK: - Appearance Selection
                     HStack {
                         Text("Appearance")
@@ -85,12 +86,13 @@ struct SettingsView: View {
                                             .font(.caption)
                                             .foregroundColor(selectedTheme == theme ? .white : .primary)
                                     )
-                                    .onTapGesture {
+/*                                    .onTapGesture {
                                         withAnimation {
                                             selectedTheme = theme
                                             HapticManager.shared.triggerHapticFeedback(enabled: hapticFeedbackEnabled)
                                         }
                                     }
+*/
                             }
                         }
                     }
@@ -98,8 +100,6 @@ struct SettingsView: View {
                     
                     // MARK: - Accent Color Selection
                     VStack(alignment: .leading) {
-                        Text("Accent Color")
-
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 4), spacing: 12) {
                             ForEach(accentColors, id: \.self) { accentColor in
                                 Circle()
