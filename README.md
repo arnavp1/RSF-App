@@ -8,7 +8,7 @@ A **SwiftUI-powered** app designed for **UC Berkeley's Recreational Sports Facil
 
 ### **📊 Crowd Meter**  
 - Displays **live occupancy data** of the RSF weight room.  
-- Uses a **web view** to show real-time **Density.io** crowd analytics.  
+- Uses a **web view** to show real-time crowd analytics.  
 - Allows users to **join the virtual line** directly from the app.  
 
 ### **📅 Workout & Attendance Tracker**  
@@ -46,12 +46,6 @@ A **SwiftUI-powered** app designed for **UC Berkeley's Recreational Sports Facil
    - Select your device and hit **⌘ + R** to build & run.  
 
 ---
-
-## **📦 Dependencies**  
-This project uses **Swift Package Manager (SPM)** for dependencies.  
-
-To install dependencies, open **Xcode → Project Settings → Package Dependencies** and ensure all packages are fetched properly.
-
 
 ## **📄 License**  
 This project is licensed under the **MIT License**.  
