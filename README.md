@@ -52,12 +52,10 @@ This project uses **Swift Package Manager (SPM)** for dependencies.
 
 To install dependencies, open **Xcode → Project Settings → Package Dependencies** and ensure all packages are fetched properly.
 
----
 
 ## **📄 License**  
 This project is licensed under the **MIT License**.  
 
----
 
 ## **📝 Credits**  
 
